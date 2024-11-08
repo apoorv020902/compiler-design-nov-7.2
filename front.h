@@ -19,6 +19,12 @@
 
 
 
+/*Function Declaration*/
 int lex();
+static int lookup(char ch);
+static void addChar();
+static void getChar();
+static void getNonBlank();
+
 
 #endif
