@@ -212,6 +212,7 @@ static void getNonBlank() {
     while (isspace(nextChar)) getChar();
 }
 
+/*implemented switch case to return token name assosiated with the passed integer value*/
 static char* tokenCodeToName(int current_code) {
     switch (current_code) {
         case 0: return "LETTER";
@@ -253,20 +254,30 @@ int lex() {
     lexLen = 0;
     getNonBlank();
 
-    switch (charClass) {
+        if (charClass == LETTER) {
         /* Parse identifiers */
-        case LETTER:
+        addChar();
+        getChar();
+        while (charClass == LETTER || charClass == DIGIT) {
             addChar();
             getChar();
-            while (charClass == LETTER || charClass == DIGIT) {
-                addChar();
-                getChar();
-            }
-            nextToken = IDENT;
-            break;
+        }
 
-        /* Parse integer literals */
-        case DIGIT:
+            /* Handling cases for if, else, input, output and ident */ 
+            if (strcmp(lexeme, "if") == 0) {
+                nextToken = KEY_IF;
+            } else if (strcmp(lexeme, "else") == 0) {
+                nextToken = KEY_ELSE;
+            } else if (strcmp(lexeme, "input") == 0) {
+                nextToken = KEY_IN;
+            } else if (strcmp(lexeme, "output") == 0) {
+                nextToken = KEY_OUT;
+            } else {
+                nextToken = IDENT;
+            }
+
+        } else if (charClass == DIGIT) {
+            /* Parse integer literals */
             addChar();
             getChar();
             while (charClass == DIGIT) {
@@ -274,25 +285,24 @@ int lex() {
                 getChar();
             }
             nextToken = INT_LIT;
-            break;
-
-        /* Parentheses and operators */
-        case UNKNOWN:
+        } else if (charClass == UNKNOWN) {
+            /* Parentheses and operators */
             lookup(nextChar);
             getChar();
-            break;
-
-        /* EOF */
-        case EOF:
+        } else if (charClass == EOF) {
+            /* EOF */
             nextToken = EOF;
             lexeme[0] = 'E';
             lexeme[1] = 'O';
             lexeme[2] = 'F';
             lexeme[3] = 0;
-            break;
-    } /* End of switch */
+        }
 
-    printf("Next token is: %d, Next lexeme is %s\n", nextToken, lexeme);
-    return nextToken;
+        if (strcmp(lexeme, "EOF") != 0){
+            printf("%s  %s\n", lexeme, tokenCodeToName(nextToken));
+        }
+
+
+        return nextToken;
 } /* End of function lex */
 
