@@ -118,6 +118,22 @@ static int lookup(char ch) {
                 ungetc(nextChar, in_fp);
                 nextToken = GREATER_OP;
             }
+        case '!':
+            addChar();
+            getChar();
+            if(nextChar == '='){
+                addChar();
+                nextToken = NEQUAL_OP;
+            }
+            else{
+                ungetc(nextChar, in_fp);
+                nextToken = BOOL_NOT;
+            }
+            break;
+        case '%':
+            addChar();
+            nextToken = MOD_OP;
+            break;
         
         default:
             addChar();
