@@ -159,6 +159,18 @@ static int lookup(char ch) {
                 nextToken = UNKNOWN;
             }
             break;
+        case ';':
+            addChar();
+            nextToken = SEMICOLON;
+            break;
+        case '{':
+            addChar();
+            nextToken = OPEN_CURL;
+            break;
+        case '}':
+            addChar();
+            nextToken = CLOSE_CURL;
+            break;
         default:
             addChar();
             nextToken = EOF;
