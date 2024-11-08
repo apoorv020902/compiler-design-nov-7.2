@@ -43,15 +43,14 @@ int main (int argumentCount, char **argumentValues)
 
     /* Open the input data file and process its contents */
     if ((in_fp = fopen(argumentValues[1], "r")) == NULL) {
-        printf("ERROR - cannot open front.in \n");
+        printf("ERROR - cannot open / find %s \n", argumentValues[1]);
     } else {
         getChar();
         do {
             lex();
-            expr();
         } while (nextToken != EOF);
     }
-
+    fclose(in_fp);
     return 0;
 }
 
