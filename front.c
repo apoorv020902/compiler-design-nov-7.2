@@ -212,6 +212,41 @@ static void getNonBlank() {
     while (isspace(nextChar)) getChar();
 }
 
+static char* tokenCodeToName(int current_code) {
+    switch (current_code) {
+        case 0: return "LETTER";
+        case 1: return "DIGIT";
+        case 99: return "UNKNOWN";
+        case 10: return "INT_LIT";
+        case 11: return "IDENT";
+        case 20: return "ASSIGN_OP";
+        case 21: return "ADD_OP";
+        case 22: return "SUB_OP";
+        case 23: return "MULT_OP";
+        case 24: return "DIV_OP";
+        case 25: return "OPEN_PAREN";
+        case 26: return "CLOSE_PAREN";
+        case 27: return "LESSER_OP";
+        case 28: return "GREATER_OP";
+        case 29: return "EQUAL_OP";
+        case 30: return "NEQUAL_OP";
+        case 31: return "LEQUAL_OP";
+        case 32: return "GEQUAL_OP";
+        case 33: return "MOD_OP";
+        case 34: return "BOOL_AND";
+        case 35: return "BOOL_OR";
+        case 36: return "BOOL_NOT";
+        case 37: return "SEMICOLON";
+        case 38: return "KEY_IN";
+        case 39: return "KEY_OUT";
+        case 40: return "KEY_IF";
+        case 41: return "KEY_ELSE";
+        case 42: return "OPEN_CURL";
+        case 43: return "CLOSE_CURL";
+        default: return "UNKNOWN";
+    }
+}
+
 /*****************************************************/
 /* lex - a simple lexical analyzer for arithmetic expressions */
 int lex() {
