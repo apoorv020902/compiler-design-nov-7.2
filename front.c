@@ -37,7 +37,7 @@ int main (int argumentCount, char **argumentValues)
 
     /*Error Handling; Making sure only one argument is passes from the command line */
         if (argumentCount != 2) {
-        fprintf("Usage Error: Expected syntax - cooke_analyzer <path_to_source_file> \n");
+        printf("Usage Error: Expected syntax - cooke_analyzer <path_to_source_file> \n");
         return 1;
     }
 
