@@ -173,7 +173,7 @@ static int lookup(char ch) {
             break;
         default:
             addChar();
-            nextToken = EOF;
+            nextToken = UNKNOWN;
             break;
     }
     return nextToken;
