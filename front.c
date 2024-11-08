@@ -118,6 +118,7 @@ static int lookup(char ch) {
                 ungetc(nextChar, in_fp);
                 nextToken = GREATER_OP;
             }
+            break;
         case '!':
             addChar();
             getChar();
@@ -134,7 +135,30 @@ static int lookup(char ch) {
             addChar();
             nextToken = MOD_OP;
             break;
-        
+        case '&':
+            addChar();
+            getChar();
+            if (nextChar == '&'){
+                addChar();
+                nextToken = BOOL_AND;
+            }
+            else{
+                ungetc(nextChar, in_fp);
+                nextToken = UNKNOWN;
+            }
+            break;
+        case '|':
+            addChar();
+            getChar();
+            if (nextChar == '|'){
+                addChar();
+                nextToken = BOOL_OR;
+            }
+            else{
+                ungetc(nextChar, in_fp);
+                nextToken = UNKNOWN;
+            }
+            break;
         default:
             addChar();
             nextToken = EOF;
