@@ -95,6 +95,30 @@ static int lookup(char ch) {
                 nextToken = ASSIGN_OP;
             }
             break;
+        case '<':
+            addChar();
+            getChar();
+            if(nextChar == '='){
+                addChar();
+                nextToken = LEQUAL_OP;
+            }
+            else{
+                ungetc(nextChar, in_fp);
+                nextToken = LESSER_OP;
+            }
+            break;
+        case '>':
+            addChar();
+            getChar();
+            if(nextChar == '='){
+                addChar();
+                nextToken = GEQUAL_OP;
+            }
+            else{
+                ungetc(nextChar, in_fp);
+                nextToken = GREATER_OP;
+            }
+        
         default:
             addChar();
             nextToken = EOF;
