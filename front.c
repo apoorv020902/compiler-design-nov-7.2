@@ -61,11 +61,11 @@ static int lookup(char ch) {
     switch (ch) {
         case '(':
             addChar();
-            nextToken = LEFT_PAREN;
+            nextToken = OPEN_PAREN;
             break;
         case ')':
             addChar();
-            nextToken = RIGHT_PAREN;
+            nextToken = CLOSE_PAREN;
             break;
         case '+':
             addChar();
@@ -82,6 +82,18 @@ static int lookup(char ch) {
         case '/':
             addChar();
             nextToken = DIV_OP;
+            break;
+        case '=':
+            addChar();
+            getChar();
+            if(nextChar == '='){
+                addChar();
+                nextToken = EQUAL_OP;
+            }
+            else{
+                ungetc(nextChar, in_fp);
+                nextToken = ASSIGN_OP;
+            }
             break;
         default:
             addChar();
