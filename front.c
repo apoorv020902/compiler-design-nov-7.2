@@ -12,7 +12,6 @@
 #include <ctype.h>
 
 #include "front.h"
-#include "parser.h"
 
 /* Global Variable */
 int nextToken;
@@ -28,11 +27,13 @@ static FILE *in_fp;
 static void addChar();
 static void getChar();
 static void getNonBlank();
+static char* tokenCodeToName(int current_code);
 
 /******************************************************/
 /* main driver */
 int main() 
-{
+{   /*printing my R number for grading purposes*/
+    printf("Cooke Analyzer :: R11723071\n\n");
     /* Open the input data file and process its contents */
     if ((in_fp = fopen("front.in", "r")) == NULL) {
         printf("ERROR - cannot open front.in \n");
