@@ -49,6 +49,7 @@ static int lookup(char ch);
 static void addChar();
 static void getChar();
 static void getNonBlank();
+static char* tokenCodeToName(int current_code);
 
 
 #endif

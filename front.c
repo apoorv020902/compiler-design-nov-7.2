@@ -33,7 +33,7 @@ static char* tokenCodeToName(int current_code);
 /* main driver */
 int main (int argumentCount, char **argumentValues) 
 {   /*printing my R number for grading purposes*/
-    printf("Cooke Analyzer :: R11723071\n\n");
+    printf("Cooke Analyzer :: R11723071\n\n\n");
 
     /*Error Handling; Making sure only one argument is passes from the command line */
         if (argumentCount != 2) {
@@ -212,7 +212,7 @@ static void getNonBlank() {
     while (isspace(nextChar)) getChar();
 }
 
-/*implemented switch case to return token name assosiated with the passed integer value*/
+/*implemented switch case to return token name linked with the passed integer value*/
 static char* tokenCodeToName(int current_code) {
     switch (current_code) {
         case 0: return "LETTER";
@@ -299,7 +299,7 @@ int lex() {
         }
 
         if (strcmp(lexeme, "EOF") != 0){
-            printf("%s  %s\n", lexeme, tokenCodeToName(nextToken));
+            printf("%s %s\n", lexeme, tokenCodeToName(nextToken));
         }
 
 
