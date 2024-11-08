@@ -1,16 +1,14 @@
 /**
- * This the example lexical analyzer code in pages 173 - 177 of the
- * textbook,
+ * This is a lexical analyzer code in
  *
  * Sebesta, R. W. (2012). Concepts of Programming Languages. 
  * Pearson, 10th edition.
  *
- */
-
 /* front.c - a lexical analyzer system for simple arithmetic expressions */
+
 #include <stdio.h>
 #include <ctype.h>
-
+#include <string.h>
 #include "front.h"
 
 /* Global Variable */
@@ -33,7 +31,7 @@ static char* tokenCodeToName(int current_code);
 /* main driver */
 int main (int argumentCount, char **argumentValues) 
 {   /*printing my R number for grading purposes*/
-    printf("Cooke Analyzer :: R11723071\n\n\n");
+    printf("Cooke Analyzer :: R11723071\n");
 
     /*Error Handling; Making sure only one argument is passes from the command line */
         if (argumentCount != 2) {
