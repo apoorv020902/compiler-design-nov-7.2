@@ -31,11 +31,18 @@ static char* tokenCodeToName(int current_code);
 
 /******************************************************/
 /* main driver */
-int main() 
+int main (int argumentCount, char **argumentValues) 
 {   /*printing my R number for grading purposes*/
     printf("Cooke Analyzer :: R11723071\n\n");
+
+    /*Error Handling; Making sure only one argument is passes from the command line */
+        if (argumentCount != 2) {
+        fprintf("Usage Error: Expected syntax - cooke_analyzer <path_to_source_file> \n");
+        return 1;
+    }
+
     /* Open the input data file and process its contents */
-    if ((in_fp = fopen("front.in", "r")) == NULL) {
+    if ((in_fp = fopen(argumentValues[1], "r")) == NULL) {
         printf("ERROR - cannot open front.in \n");
     } else {
         getChar();
